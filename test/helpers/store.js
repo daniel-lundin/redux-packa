@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { middleware as packa, handle } from '../../src';
 
 const PROMISE_ACTION = 'PROMISE_ACTION';
+export const CANCEL_TOKEN = 'CANCEL_TOKEN';
 
 const defaultState = {
   isLoading: false,
@@ -49,5 +50,6 @@ export function promiseAction(promise, meta = {}) {
 }
 
 export function setupStore() {
-  return createStore(rootReducer, defaultState, applyMiddleware(packa));
+  const cancelChecker = (reason) => reason === CANCEL_TOKEN;
+  return createStore(rootReducer, defaultState, applyMiddleware(packa(cancelChecker)));
 }

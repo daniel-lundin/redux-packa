@@ -1,4 +1,4 @@
-import { setupStore, promiseAction } from './helpers/store.js';
+import { setupStore, promiseAction, CANCEL_TOKEN } from './helpers/store.js';
 import * as controllablePromise from './helpers/controllable-promise.js';
 
 const createHandleMock = () => ({
@@ -94,7 +94,7 @@ Feature('Middleware', () => {
 
 
     When('promise is canceled', () => {
-      promise.reject('CANCEL_REJECTION');
+      promise.reject(CANCEL_TOKEN);
     });
 
     Then('store should not be in loading state', () => {

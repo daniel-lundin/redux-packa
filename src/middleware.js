@@ -7,6 +7,8 @@ import {
 
 import { isFunction, isPromise } from './helpers.js';
 
+export let _cancelChecker = () => false;
+
 function callEventHook(meta, hook, ...args) {
   if (!meta || !isFunction(meta[hook]))
     return;
@@ -20,7 +22,7 @@ const proxyMeta = (meta = {}) => ({
   onSuccess: (...args) => callEventHook(meta, 'onSuccess', ...args),
   onFinish: (...args) => callEventHook(meta, 'onFinish', ...args),
   onFailure: (reason) => {
-    if (reason === 'CANCEL_REJECTION')
+    if (_cancelChecker(reason))
       return callEventHook(meta, 'onCancel', reason);
     return callEventHook(meta, 'onFailure', reason);
   }
@@ -28,8 +30,9 @@ const proxyMeta = (meta = {}) => ({
 
 const replaceMeta = (action, newMeta) => ({ ...action, meta: newMeta });
 
-const packaMiddleware = (store) => (next) => {
+const packaMiddleware = (cancelChecker) => (store) => (next) => {
   const pack = reduxPack(store)(next);
+  _cancelChecker = cancelChecker;
 
   return (action) => {
     if (isPromise(action.promise)) {

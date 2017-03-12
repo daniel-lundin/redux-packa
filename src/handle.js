@@ -3,6 +3,7 @@ import {
 } from 'redux-pack';
 
 import { isFunction } from './helpers.js';
+import { _cancelChecker } from './middleware.js';
 
 const callHandler = (handlers, fn, state, action) => {
   if (!handlers[fn] || !isFunction(handlers[fn]))
@@ -15,7 +16,7 @@ const proxyHandlers = (handlers = {}) => ({
   success: (...args) => callHandler(handlers, 'success', ...args),
   finish: (...args) => callHandler(handlers, 'finish', ...args),
   failure: (state, action) => {
-    if (action.payload === 'CANCEL_REJECTION')
+    if (_cancelChecker(action.payload))
       return callHandler(handlers, 'cancel', state, action);
     return callHandler(handlers, 'failure', state, action);
   }
