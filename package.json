@@ -1,6 +1,6 @@
 {
   "name": "redux-packa",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "thin wrapper around redux-pack with hooks for cancelable promises",
   "main": "lib/index.js",
   "keywords": [
