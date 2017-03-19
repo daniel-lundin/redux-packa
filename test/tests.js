@@ -92,7 +92,6 @@ Feature('Middleware', () => {
       expect(state.isLoading).toBe(true);
     });
 
-
     When('promise is canceled', () => {
       promise.reject(CANCEL_TOKEN);
     });

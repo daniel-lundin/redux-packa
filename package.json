@@ -18,12 +18,11 @@
     "expect": "^1.20.2",
     "kuta": "0.0.21",
     "redux": "^3.6.0",
-    "redux-pack": "^0.1.4",
     "sinon": "^1.17.7"
   },
   "kuta": {
     "files": [
-      "test/**/*-tests.js"
+      "test/*tests.js"
     ],
     "requires": [
       "babel-register",
@@ -32,7 +31,11 @@
   },
   "scripts": {
     "test": "kuta",
+    "prepublish": "npm run build",
     "build": "babel src --out-dir lib",
     "lint": "eslint src test"
+  },
+  "dependencies": {
+    "redux-pack": "^0.1.4"
   }
 }
