@@ -9,6 +9,9 @@
   ],
   "author": "Daniel Lundin <d-dog@d-dog.se>",
   "license": "MIT",
+  "dependencies": {
+    "redux-pack": "^0.1.4"
+  },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
@@ -33,9 +36,7 @@
     "test": "kuta",
     "prepublish": "npm run build",
     "build": "babel src --out-dir lib",
-    "lint": "eslint src test"
-  },
-  "dependencies": {
-    "redux-pack": "^0.1.4"
+    "lint": "eslint src test",
+    "ci": "npm run lint && npm test"
   }
 }
