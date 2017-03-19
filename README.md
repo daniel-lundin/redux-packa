@@ -1,5 +1,6 @@
 # Redux-packa
 [![Build Status](https://travis-ci.org/daniel-lundin/redux-packa.svg?branch=master)](https://travis-ci.org/daniel-lundin/redux-packa)
+[![npm version](https://badge.fury.io/js/redux-packa.svg)](https://badge.fury.io/js/redux-packa)
 
 Wrapper around [https://github.com/lelandrichardson/redux-pack](redux-pack) that adds hooks and handlers form canceled promises.
 

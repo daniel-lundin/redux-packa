@@ -12,6 +12,10 @@
   "dependencies": {
     "redux-pack": "^0.1.4"
   },
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daniel-lundin/redux-packa.git"
+  },
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-eslint": "^6.1.2",
